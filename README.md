@@ -1,5 +1,7 @@
 # Cliero AI
 
+<img width="500" height="500" alt="2" src="https://github.com/user-attachments/assets/e9278e1e-6210-46e0-ab55-486801415afa" />
+
 Cliero AI is my personal full-stack web development project focused on building an AI-powered academic productivity platform for engineering students.
 
 I'm building this project from scratch to improve my full-stack development skills while creating something actually useful for students. The goal is to make studying and learning concepts easier with the help of AI.
@@ -18,11 +20,6 @@ This project will include features like:
 - Tailwind CSS
 - Firebase
 - OpenAI API / Gemini / Groq
-
-## Current Status
-
-Currently building V1 of Cliero AI.
-
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
