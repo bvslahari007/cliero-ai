@@ -26,3 +26,10 @@ export default function RootLayout({
     </html>
   );
 }
+
+import { Inter_Tight } from "next/font/google";
+
+export const interTight = Inter_Tight({
+  subsets: ["latin"],
+});
+
