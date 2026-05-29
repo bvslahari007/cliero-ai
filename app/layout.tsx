@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { Inter_Tight, Instrument_Serif } from "next/font/google";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -27,9 +28,13 @@ export default function RootLayout({
   );
 }
 
-import { Inter_Tight } from "next/font/google";
-
 export const interTight = Inter_Tight({
   subsets: ["latin"],
 });
+
+export const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+});
+
 

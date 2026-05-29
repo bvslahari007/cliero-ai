@@ -4,7 +4,7 @@ import { interTight } from "@/app/layout";
 
 export default function Navbar() {
     return (
-        <nav className="bg-blue-800 px-6 py-4 fixed top-0 left-0 right-0 z-50">
+        <nav className="bg-blue-900 px-6 py-4 fixed top-0 left-0 right-0 z-50">
             <div className="flex items-center justify-between">
 
                 <Link href="#" className="transition-transform duration-300 hover:scale-110  ease-in-out">
@@ -16,7 +16,7 @@ export default function Navbar() {
                 />
                     </Link>
 
-                <div className={`${interTight.className} hidden md:flex items-center gap-10 text-white`}>
+                <div className={`${interTight.className} hidden md:flex items-center gap-10 text-white font-medium text-lg`}>
                         <a href="#" className="transition-transform duration-300 hover:text-blue-100 hover:scale-110 ease-in-out">
                             About
                         </a>
