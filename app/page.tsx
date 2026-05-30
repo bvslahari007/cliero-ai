@@ -2,6 +2,7 @@ import Hero from "@/components/hero";
 import Navbar from "@/components/navbar";
 import About from "@/components/whatiscliero"
 import Features from "@/components/features"
+import WhyChoose from "@/components/whycliero";
 
 export default function Home() {
     return(
@@ -10,6 +11,7 @@ export default function Home() {
             <Hero />
             <About />
             <Features />
+            <WhyChoose />
         </main>
 
     );

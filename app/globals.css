@@ -60,3 +60,13 @@ body {
 
   background-size: 24px 24px;
 }
+
+@keyframes twinkle {
+  0%,100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
