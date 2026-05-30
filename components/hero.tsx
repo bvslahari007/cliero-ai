@@ -15,11 +15,10 @@ export default function Hero() {
     px-6
     gap-4
     bg-white
-    bg-[linear-gradient(#ececec_1px,transparent_1px),linear-gradient(90deg,#ececec_1px,transparent_1px)]
-    bg-[size:40px_40px]
+    grid-bg
   ">
 
-      <div className="relative" width-70>
+      <div className="relative">
         
         <Image
           className="w-full max-w-sm md:max-w-6xl float"

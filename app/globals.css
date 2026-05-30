@@ -42,3 +42,21 @@ body {
 .float {
   animation: float 3s ease-in-out infinite;
 }
+
+
+.grid-bg {
+  background-image:
+    linear-gradient(#ececec 1px, transparent 1px),
+    linear-gradient(90deg, #ececec 1px, transparent 1px);
+
+  background-size: 40px 40px;
+}
+.dots-bg {
+  background-image:
+    radial-gradient(
+      rgb(255, 255, 255, 0.3) 1px,
+      transparent 1px
+    );
+
+  background-size: 24px 24px;
+}
