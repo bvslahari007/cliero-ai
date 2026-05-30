@@ -8,16 +8,12 @@ export default function About() {
       
       <div className="flex justify-center items-center gap-2 mb-5">
 
-        <h2
-          className={`${interTight.className} text-4xl md:text-5xl font-bold text-white`}
-        >
-          What Is
-        </h2>
+        <h2 className={`${instrumentSerif.className} text-4xl md:text-6xl font-bold text-white`}>What Is</h2>
 
         <Image
           src="/nav logo.png"
           alt="Cliero"
-          width={250}
+          width={200}
           height={100}
         />
 
