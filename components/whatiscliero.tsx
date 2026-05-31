@@ -3,7 +3,7 @@ import { instrumentSerif, interTight } from "@/app/layout";
 
 export default function About() {
   return (
-    <section className="min-h-screen bg-blue-900 px-6 py-8 dots-bg">
+    <section className=" bg-blue-900 px-6 py-8 dots-bg">
 
       
       <div className="flex justify-center items-center gap-2 mb-5">

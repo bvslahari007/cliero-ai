@@ -8,7 +8,7 @@ export default function Features() {
       {/* Heading */}
       <div className="flex justify-center items-center gap-4 mb-16">
         <h2
-          className={`${instrumentSerif.className} text-4xl md:text-6xl font-bold text-blue-800`}
+          className={`${instrumentSerif.className} text-5xl md:text-6xl font-bold text-blue-800`}
         >
           Features
         </h2>
@@ -33,7 +33,7 @@ export default function Features() {
       />
 
       
-        <Image className="float absolute right-10 top-30 float"
+        <Image className="hidden md:block absolute right-80 top-30 float"
           src="/hero-book.png"
           alt="Book"
           width={100}
@@ -46,13 +46,13 @@ export default function Features() {
         alt="bulb"
         width={110}
         height={110}
-        className="hidden md:block absolute left-25 top-32 float"      />
+        className="hidden md:block absolute left-50 top-32 float"      />
 
       {/* Main Content */}
       <div className="flex flex-col items-center text-center gap-4">
 
         <div
-          className={`${instrumentSerif.className} text-blue-800 text-3xl md:text-5xl leading-relaxed`}
+          className={`${instrumentSerif.className} text-blue-800 text-5xl md:text-7xl leading-relaxed`}
         >
           <p>Ask AI a Question</p>
           <p>Generate Smart Notes</p>

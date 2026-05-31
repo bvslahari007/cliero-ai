@@ -8,6 +8,7 @@ export default function Hero() {
     pt-20
     min-h-screen
     flex
+    mt-2
     flex-col
     items-center
     justify-center
