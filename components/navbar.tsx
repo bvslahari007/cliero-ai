@@ -29,7 +29,7 @@ export default function Navbar() {
                             Note For You!
                         </a>
                     
-                    <Link href="#" className="transition-transform duration-300 hover:scale-110  ease-in-out">
+                    <Link href="/signup" className="transition-transform duration-300 hover:scale-110  ease-in-out">
                         <Image
                             src="/get-started button-nav bar.png"
                             alt="Cliero AI Get Started Button"

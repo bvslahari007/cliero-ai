@@ -74,7 +74,7 @@ export default function FinalCTA() {
         </div>
 
         <Link
-          href="#"
+          href="/signup"
           className="transition-transform duration-300 hover:scale-110"
         >
           <Image
