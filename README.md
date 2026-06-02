@@ -80,16 +80,8 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-## Copyright & Usage
+## License
 
-© 2026 Lahari. All Rights Reserved.
+This project is proprietary and protected by copyright.
 
-ClieroAI is a personal project created and maintained by Lahari.
-
-The source code, design, branding, content, and assets in this repository are protected by copyright law. You may not copy, redistribute, modify, publish, sell, or claim any part of this project as your own without explicit written permission from the author.
-
-This repository is provided for viewing and learning purposes only. Unauthorized reproduction or use of this project, in whole or in part, is prohibited.
-
-If you would like to reference, collaborate on, or use any part of this project, please contact the author first.
-
-Built with ♥ by Lahari.
+See the LICENSE file for details.
