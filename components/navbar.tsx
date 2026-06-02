@@ -21,11 +21,11 @@ export default function Navbar() {
                             About
                         </a>
 
-                        <a href="#" className="transition-transform duration-300 hover:text-blue-100 hover:scale-110 ease-in-out">
+                        <a href="/contact" className="transition-transform duration-300 hover:text-blue-100 hover:scale-110 ease-in-out">
                             Contact
                          </a>
 
-                        <a href="#" className="transition-transform duration-300 hover:text-blue-100 hover:scale-110 ease-in-out">
+                        <a href="/note" className="transition-transform duration-300 hover:text-blue-100 hover:scale-110 ease-in-out">
                             Note For You!
                         </a>
                     
