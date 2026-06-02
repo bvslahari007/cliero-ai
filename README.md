@@ -79,3 +79,9 @@ Computer Science & Engineering Student at GITAM Deemed University
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## License
+
+This project is proprietary and protected by copyright.
+
+See the LICENSE file for details.
