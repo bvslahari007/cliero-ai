@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { instrumentSerif, interTight } from "@/app/layout";
+import { instrumentSerif, interTight } from "@/app/fonts";
 
 export default function Footer(){
     return(

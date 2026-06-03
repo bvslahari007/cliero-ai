@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { interTight } from "@/app/layout";
+import { interTight } from "@/app/fonts";
 
 export default function Navbar() {
     return (

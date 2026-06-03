@@ -1,8 +1,36 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import { instrumentSerif } from "@/app/layout";
+import { instrumentSerif } from "@/app/fonts";
+import { useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 export default function SignUp() {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  async function handleSignUp(){
+
+    if(!fullName || !fullName.trim() || !email || !email.trim() || !password || !password.trim()){
+      alert("Please fill all fields");
+      return;
+    }
+
+    const{ data, error } = await supabase.auth.signUp({
+email, password
+    });
+
+    if (error) {
+      console.error(error.message);
+      alert(error.message);
+      return;
+    }
+
+    console.log(data);
+    alert("Account created successfully!");
+  }
+
   return (
     <main
       className="
@@ -70,6 +98,8 @@ export default function SignUp() {
         <input
           type="text"
           placeholder="Enter your full name"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
           className="
             w-full
             rounded-xl
@@ -97,6 +127,8 @@ export default function SignUp() {
         <input
           type="email"
           placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className="
             w-full
             rounded-xl
@@ -124,6 +156,8 @@ export default function SignUp() {
         <input
           type="password"
           placeholder="Create a password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           className="
             w-full
             rounded-xl
@@ -143,16 +177,17 @@ export default function SignUp() {
       </div>
 
       {/* Create Account Button */}
-      <div className="transition-transform duration-300 hover:scale-110">
-        <Link href="#">
-          <Image
-            src="/create-acc-button.png"
-            alt="Create Account"
-            width={180}
-            height={60}
-          />
-        </Link>
-      </div>
+      <button
+  onClick={handleSignUp}
+  className="transition-transform duration-300 hover:scale-110"
+>
+  <Image
+    src="/create-acc-button.png"
+    alt="Create Account"
+    width={180}
+    height={60}
+  />
+</button>
 
       {/* Login Link */}
       <div

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { instrumentSerif, interTight } from "@/app/layout";
+import { instrumentSerif, interTight } from "@/app/fonts";
 
 export default function About() {
   return (

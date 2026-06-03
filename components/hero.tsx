@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { instrumentSerif } from "@/app/layout";
+import { instrumentSerif } from "@/app/fonts";
 import Link from "next/link";
 
 export default function Hero() {
