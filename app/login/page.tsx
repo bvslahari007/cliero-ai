@@ -1,8 +1,35 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { instrumentSerif } from "@/app/fonts";
+import { supabase } from "@/lib/supabase";
+import { useState } from "react";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+async function handleLogin() {
+  if (!email.trim() || !password.trim()) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  const { data, error } =
+    await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+  if (error) {
+    alert(error.message);
+    return;
+  }
+
+  console.log(data);
+  alert("Login successful!");
+}
+
   return (
     <main
       className="
@@ -71,6 +98,8 @@ export default function Login() {
         <input
           type="email"
           placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className="
             w-full
             rounded-xl
@@ -98,6 +127,8 @@ export default function Login() {
         <input
           type="password"
           placeholder="Enter your password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           className="
             w-full
             rounded-xl
@@ -118,15 +149,15 @@ export default function Login() {
 
       {/* Create Account Button */}
       <div className="transition-transform duration-300 hover:scale-110">
-        <Link href="/signup">
-          <Image
-            src="/login-button.png"
-            alt="Login"
-            width={180}
-            height={60}
-          />
-        </Link>
-      </div>
+  <button onClick={handleLogin}>
+    <Image
+      src="/login-button.png"
+      alt="Login"
+      width={180}
+      height={60}
+    />
+  </button>
+</div>
 
       {/* Login Link */}
       <div
