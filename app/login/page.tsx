@@ -63,7 +63,7 @@ async function handleLogin() {
   ← Back to Home
 </Link>
       {/* Logo */}
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-2">
         <Image
           src="/sign-up-logo.png"
           alt="Logo"
