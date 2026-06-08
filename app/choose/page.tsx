@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
 import { instrumentSerif } from "@/app/fonts";
+import { useState } from "react"
 
 export default function ChooseDomain() {
   return (
