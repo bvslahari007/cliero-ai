@@ -2,8 +2,56 @@
 import Image from "next/image";
 import { instrumentSerif } from "@/app/fonts";
 import { useState } from "react"
+import { supabase } from "@/lib/supabase";
+
 
 export default function ChooseDomain() {
+  const [domain, setDomain] = useState("");
+
+  async function handleContinue(){
+    if (!domain){
+      alert("Please select a field");
+      return;
+    }
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user){
+      alert("Please login again");
+      return;
+    }
+    console.log(user);
+    console.log(domain);
+
+    const profileData = {
+  user_id: user.id,
+  full_name: user.user_metadata.full_name,
+  domain,
+};
+
+console.log("PROFILE DATA:", profileData);
+
+const { data, error } = await supabase
+  .from("profiles")
+  .insert(profileData);
+
+console.log(data);
+console.log(error);
+
+    if (error) {
+  console.log("FULL ERROR:", error);
+  if (error?.code === "23505") {
+  alert("Profile already exists.");
+  return;
+}
+  return;
+}
+  }
+  
+    
+
   return (
     <main
       className="
@@ -65,7 +113,8 @@ export default function ChooseDomain() {
 
       {/* Dropdown */}
       <div className="mt-8 w-full max-w-xl">
-        <select
+        <select value={domain}
+        onChange={(e) => setDomain(e.target.value)}
           className={`${instrumentSerif.className}
             w-full
             p-3
@@ -129,7 +178,7 @@ export default function ChooseDomain() {
       </p>
 
       {/* Continue Button */}
-      <button>
+      <button onClick={handleContinue}>
         <Image className="transition-transform duration-300 hover:scale-110 mt-3"
           src="/on-boarding-continue.png"
           alt="Create Account"

@@ -4,11 +4,14 @@ import Link from "next/link";
 import { instrumentSerif } from "@/app/fonts";
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const router = useRouter();
 
   async function handleSignUp(){
 
@@ -27,12 +30,18 @@ email, password, options: {
 
     if (error) {
       console.error(error.message);
-      alert(error.message);
+      if (error.message.includes("already")) {
+      alert("An account with this email already exists. Please login instead.");
+      return;
+}
+
+alert(error.message);
       return;
     }
 
     console.log(data);
     alert("Account created successfully!");
+    router.push("/choose")
   }
 
   return (
