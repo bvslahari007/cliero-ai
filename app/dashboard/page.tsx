@@ -1,9 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
-import { instrumentSerif } from "@/app/fonts";
+import WelcomeSection from "@/components/dashboard/WelcomeSection";
 
-export default function Dashboard() {
-    return(
-        console.log("Dashboard")
-    );
+export default function DashboardPage() {
+  return (
+    <div>
+      <WelcomeSection />
+    </div>
+  );
 }
