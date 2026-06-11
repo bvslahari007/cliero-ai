@@ -61,12 +61,14 @@ body {
   background-size: 24px 24px;
 }
 
-@keyframes twinkle {
-  0%,100% {
-    opacity: 0.3;
-  }
+.notebook-bg {
+  background-color: #f8fafc;
 
-  50% {
-    opacity: 1;
-  }
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 39px,
+      rgba(59, 130, 246, 0.3) 40px
+    );
 }

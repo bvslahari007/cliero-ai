@@ -16,7 +16,7 @@ export default function DashboardLayout({
             <main className="flex-1">
   <div className="md:hidden p-4">
     <button className="text-3xl text-white">
-      ☰
+      ☰ 
     </button>
   </div>
 

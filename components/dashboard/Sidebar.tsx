@@ -3,8 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { instrumentSerif, interTight } from "@/app/fonts";
+import { usePathname } from "next/navigation";
 
 export default function Sidebar() {
+  const pathname = usePathname();
+
   return (
     <aside className="flex h-screen w-60 flex-col bg-blue-900 text-white p-5">
       
@@ -25,29 +28,44 @@ export default function Sidebar() {
       {/* Navigation */}
       <nav className={`${interTight.className} flex flex-col gap-2`}>
         <Link
-          href="/dashboard"
-          className="rounded-xl bg-blue-500/10 px-4 py-3 text-base font-semibold transition-all  duration-300 hover:bg-white/100 hover:text-blue-900 hover:shadow-md hover:translate-x-1"
-        >
-          Dashboard
-        </Link>
+  href="/dashboard"
+  className={`rounded-xl px-4 py-3 font-semibold transition-all duration-300 ${
+    pathname === "/dashboard"
+      ? "bg-white text-blue-900 shadow-md"
+      : "bg-blue-500/10 text-white hover:bg-white hover:text-blue-900"
+  }`}
+>
+  Dashboard
+</Link>
 
         <Link
-          href="/dashboard/ask-ai"
-          className="rounded-xl bg-blue-500/10 px-4 py-3 text-base font-semibold transition-all duration-300 hover:bg-white/100 hover:text-blue-900 hover:shadow-md hover:translate-x-1"
-        >
-          Ask AI
-        </Link>
+  href="/dashboard/ask-ai"
+  className={`rounded-xl px-4 py-3 font-semibold transition-all duration-300 hover:translate-x-1 ${
+    pathname === "/dashboard/ask-ai"
+      ? "bg-white text-blue-900 shadow-md"
+      : "bg-blue-500/10 text-white hover:bg-white hover:text-blue-900"
+  }`}
+>
+  Ask AI
+</Link>
 
         <Link
           href="/dashboard/notes"
-          className="rounded-xl bg-blue-500/10 px-4 py-3 text-base font-semibold transition-all duration-300 hover:bg-white/100 hover:text-blue-900 hover:shadow-md hover:translate-x-1"
-        >
+className={`rounded-xl px-4 py-3 font-semibold transition-all duration-300 hover:translate-x-1 ${
+    pathname === "/dashboard/notes"
+      ? "bg-white text-blue-900 shadow-md"
+      : "bg-blue-500/10 text-white hover:bg-white hover:text-blue-900"
+  }`}        >
           Notes Generator
         </Link>
 
         <Link
           href="/dashboard/library"
-          className="rounded-xl bg-blue-500/10 px-4 py-3 text-base font-semibold transition-all duration-300 hover:bg-white/100 hover:text-blue-900 hover:shadow-md hover:translate-x-1"
+          className={`rounded-xl px-4 py-3 font-semibold transition-all duration-300 hover:translate-x-1 ${
+    pathname === "/dashboard/library"
+      ? "bg-white text-blue-900 shadow-md"
+      : "bg-blue-500/10 text-white hover:bg-white hover:text-blue-900"
+  }`}
         >
           Library
         </Link>
@@ -55,7 +73,7 @@ export default function Sidebar() {
 
       {/* User Card */}
       <div className={`${interTight.className} mt-auto`}>
-        <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm shadow-md">
+        <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm shadow-lg">
           <p className="font-semibold">USERNAME</p>
           <p className="text-sm text-white/70">
             BRANCH
