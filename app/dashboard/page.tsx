@@ -10,7 +10,7 @@ export default function DashboardPage() {
   return (
     <div className="notebook-bg min-h-screen">
       <WelcomeSection />
-      <div className="grid gap-8 p-5 md:grid-cols-3">
+      <div className="grid gap-10 p-5 md:grid-cols-3">
         <ActionCard title="Ask AI" description="Beginner-friendly explanations, step-by-step breakdowns, and academic support - whenever a concept feels cloudy." link="/action" icon={<Sparkles />} />
         <ActionCard title="Smart Notes Generator" description="Turn any topic into structured study notes - summaries
 formulas, worked examples, and revision points." link="/action" icon={<NotebookPen />} />

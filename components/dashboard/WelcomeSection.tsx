@@ -4,7 +4,7 @@ import { instrumentSerif, interTight } from "@/app/fonts";
 
 export default function WelcomeSection(){
     return(
-        <section className="py-7 px-10">
+        <section className="py-5 px-10">
             <div className="flex items-center gap-40">
                 <div>
             <p className={`${instrumentSerif.className} mt-4 text-3xl font-bold text-blue-900`}>
