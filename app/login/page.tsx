@@ -30,6 +30,19 @@ async function handleLogin() {
   alert("Login successful!");
 }
 
+async function handleGoogleAuth() {
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: `${window.location.origin}/dashboard`,
+    },
+  });
+
+  if (error) {
+    alert(error.message);
+  }
+}
+
   return (
     <main
       className="
@@ -181,14 +194,14 @@ async function handleLogin() {
         </p>
 
         <div className="transition-transform duration-300 hover:scale-110">
-          <Link href="#">
-            <Image
-              src="/google-auth-button.png"
-              alt="Google Auth"
-              width={220}
-              height={70}
-            />
-          </Link>
+          <button onClick={handleGoogleAuth}>
+  <Image
+    src="/google-auth-button.png"
+    alt="Google Auth"
+    width={220}
+    height={70}
+  />
+</button>
         </div>
       </div>
 

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { interTight } from "@/app/fonts";
 import { useState } from "react";
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -102,8 +103,9 @@ export default function Navbar() {
 
 
                 <button className="md:hidden text-white text-3xl" aria-label="Open menu"
-                onClick={() => setIsOpen(!isOpen)}>
-                    {isOpen ? "✖" : "☰"}
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  {isOpen ? <X size={32} /> : <Menu size={32} />}
                 </button>
 
             </div>
