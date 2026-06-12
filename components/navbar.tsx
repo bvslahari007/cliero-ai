@@ -56,7 +56,7 @@ export default function Navbar() {
 </div>
 
                 {isOpen && (
-  <div className={`${interTight.className} font-semibold flex flex-col fixed top-20 right-0 px-10
+  <div className={`${interTight.className} font-semibold flex flex-col fixed top-20 right-0 px-10 py-30
     gap-8
     h-screen
     w-64
