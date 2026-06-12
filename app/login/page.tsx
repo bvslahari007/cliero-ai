@@ -4,10 +4,12 @@ import Link from "next/link";
 import { instrumentSerif } from "@/app/fonts";
 import { supabase } from "@/lib/supabase";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
 async function handleLogin() {
   if (!email.trim() || !password.trim()) {
@@ -27,7 +29,7 @@ async function handleLogin() {
   }
 
   console.log(data);
-  alert("Login successful!");
+  router.push("/dashboard");
 }
 
 async function handleGoogleAuth() {
