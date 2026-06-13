@@ -29,7 +29,9 @@ export default function ChooseDomain() {
 
     const profileData = {
   user_id: user.id,
-  full_name: user.user_metadata.full_name,
+  full_name:
+  user.user_metadata.full_name ||
+  user.user_metadata.name,
   domain,
 };
 

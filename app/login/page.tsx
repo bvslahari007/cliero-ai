@@ -49,11 +49,16 @@ async function handleGoogleAuth() {
 }
 
 async function redirectUser(userId: string){
-  const { data } = await supabase
+  const { data, error } = await supabase
   .from("profiles")
   .select("*")
   .eq("user_id", userId)
   .maybeSingle();
+
+if (error) {
+  console.error(error);
+  return;
+}
 
   if (data) {
     router.push("/dashboard");
