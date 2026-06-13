@@ -3,10 +3,12 @@ import Image from "next/image";
 import { instrumentSerif } from "@/app/fonts";
 import { useState } from "react"
 import { supabase } from "@/lib/supabase";
+import { useRouter } from "next/navigation";
 
 
 export default function ChooseDomain() {
   const [domain, setDomain] = useState("");
+  const router = useRouter();
 
   async function handleContinue(){
     if (!domain){
@@ -48,6 +50,8 @@ console.log(error);
 }
   return;
 }
+alert("Profile created successfully!");
+router.push("/dashboard");
   }
   
     
