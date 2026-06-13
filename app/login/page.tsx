@@ -29,7 +29,10 @@ async function handleLogin() {
   }
 
   console.log(data);
-  router.push("/dashboard");
+
+if (data.user) {
+  await redirectUser(data.user.id);
+}
 }
 
 async function handleGoogleAuth() {
@@ -42,6 +45,20 @@ async function handleGoogleAuth() {
 
   if (error) {
     alert(error.message);
+  }
+}
+
+async function redirectUser(userId: string){
+  const { data } = await supabase
+  .from("profiles")
+  .select("*")
+  .eq("user_id", userId)
+  .maybeSingle();
+
+  if (data) {
+    router.push("/dashboard");
+  } else {
+    router.push("/choose");
   }
 }
 
