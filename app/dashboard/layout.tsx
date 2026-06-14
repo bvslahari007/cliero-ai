@@ -14,14 +14,13 @@ export default function DashboardLayout({
 
     return(
         
-        <div className="flex min-h-screen bg-blue-900">
+        <div className="flex min-h-screen">
             <aside className="hidden md:block border-r">
                 <Sidebar />
             </aside>
 
             <main className="flex-1">
-  <div className="md:hidden p-4">
-    <button className="text-3xl text-white" onClick={() => setIsOpen(true)}>
+<div className="md:hidden p-4 bg-blue-900 w-full">    <button className="text-3xl text-white" onClick={() => setIsOpen(true)}>
       {isOpen ? <XIcon size={32} /> : <Menu size={32} />}
     </button>
     {isOpen && (
