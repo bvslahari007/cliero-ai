@@ -51,7 +51,7 @@ export default function Settings() {
     .from("profiles")
     .update({
       full_name: fullName,
-      domain,
+      domain: domain,
     })
     .eq("user_id", user.id);
 
