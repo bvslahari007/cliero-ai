@@ -1,7 +1,73 @@
+"use client";
 import { interTight, instrumentSerif } from "@/app/fonts";
-import Footer from "@/components/footer";
+import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
+import { useRouter } from "next/navigation";
+
 
 export default function Settings() {
+
+  const [fullName, setFullName] = useState("");
+  const [domain, setDomain] = useState("");
+  const router = useRouter();
+
+  useEffect(() => {
+    fetchProfile();
+  }, []);
+
+  async function fetchProfile() {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      return;
+    }
+
+    const{ data, error } = await supabase
+      .from("profiles")
+      .select("full_name, domain")
+      .eq("user_id", user.id)
+      .single();
+
+      if (error) {
+        console.log(error);
+        return;
+      }
+
+      setFullName(data.full_name);
+      setDomain(data.domain);
+    
+  }
+
+  async function handleSave() {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) return;
+
+  const { error } = await supabase
+    .from("profiles")
+    .update({
+      full_name: fullName,
+      domain,
+    })
+    .eq("user_id", user.id);
+
+  if (error) {
+    alert(error.message);
+    return;
+  }
+
+  alert("Profile updated successfully!");
+}
+
+async function handleLogout() {
+  await supabase.auth.signOut();
+  router.push("/");
+}
+
   return (
     <div className="notebook-bg min-h-screen bg-white p-14 py-12">
       <h1
@@ -16,7 +82,6 @@ export default function Settings() {
 
       <div className={`${interTight.className} mt-8 max-w-2xl `}>
         
-        {/* Full Name */}
         <div className="mb-4">
           <label className="mb-2 block text-lg font-medium text-blue-900">
             Full Name
@@ -37,16 +102,20 @@ export default function Settings() {
               focus:ring-2
               focus:ring-blue-800
             "
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
           />
         </div>
 
-        {/* Domain */}
         <div className="mb-8">
           <label className="mb-2 block text-lg font-medium text-blue-900">
             Field of Study
           </label>
 
           <select
+            value={domain}
+            onChange={(e) => setDomain(e.target.value)}
+
             className="
             bg-white
               w-full
@@ -77,7 +146,6 @@ export default function Settings() {
           </select>
         </div>
 
-        {/* Save Button */}
         <button
           className="
             rounded-2xl
@@ -92,12 +160,12 @@ export default function Settings() {
   active:scale-95
   hover:bg-blue-800
           "
+          onClick={handleSave}
         >
           Save Changes
         </button>
       </div>
 
-      {/* Logout */}
       <div className="mt-8">
         <button
           className="
@@ -115,6 +183,7 @@ export default function Settings() {
   hover:bg-red-500
   hover:text-white
           "
+          onClick={handleLogout}
         >
           Logout
         </button>
