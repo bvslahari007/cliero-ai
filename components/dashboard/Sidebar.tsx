@@ -12,8 +12,42 @@ import {
   Settings,
 } from "lucide-react";
 
+import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
+
 export default function Sidebar() {
   const pathname = usePathname();
+  const [fullName, setFullName] = useState("");
+  const firstName = fullName.split(" ")[0];
+  const [domain, setDomain] = useState(""); 
+
+  async function fetchProfile() {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) return;
+
+  const { data, error } = await supabase
+    .from("profiles")
+    .select("full_name, domain")
+    .eq("user_id", user.id)
+    .single();
+
+  if (error) {
+    console.log(error);
+    return;
+  }
+
+  setFullName(data.full_name);
+  setDomain(data.domain);
+}
+
+  useEffect(() => {
+  fetchProfile();
+}, []);
+
+
 
   const linkStyles = (href: string) =>
   `flex items-center gap-3 rounded-xl px-4 py-3 font-semibold transition-all duration-300 hover:translate-x-1 ${      pathname === href
@@ -64,7 +98,6 @@ export default function Sidebar() {
         </Link>
       </nav>
 
-      {/* Settings */}
       <div className={`${interTight.className} mt-22 border-t border-white/10 pt-4`}>
         <Link
   href="/dashboard/settings"
@@ -75,13 +108,42 @@ export default function Sidebar() {
 </Link>
       </div>
 
-      {/* User Card */}
       <div className={`${interTight.className} mt-auto`}>
-        <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm shadow-lg">
-          <p className="font-semibold">USERNAME</p>
-          <p className="text-sm text-white/70">BRANCH</p>
-        </div>
+  <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm shadow-lg">
+    
+    <div className="flex items-center gap-3">
+      
+      <div
+        className="
+          flex
+          h-12
+          w-12
+          items-center
+          justify-center
+          rounded-full
+          bg-white
+          text-blue-900
+          text-lg
+          font-bold
+        "
+      >
+        {firstName ? firstName[0].toUpperCase() : "?"}
       </div>
+
+      <div>
+        <p className="font-semibold">
+          {firstName || "Loading..."}
+        </p>
+
+        <p className="text-sm text-white/70">
+          {domain || "Loading..."}
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</div>
 
     </aside>
   );
