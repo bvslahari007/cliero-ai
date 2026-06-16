@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { instrumentSerif } from "@/app/fonts";
-import { useEffect, useState,  } from "react"
+import { useEffect, useState} from "react"
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 
