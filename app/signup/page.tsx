@@ -32,6 +32,7 @@ email, password, options: {
       console.error(error.message);
       if (error.message.includes("already")) {
       alert("An account with this email already exists. Please login instead.");
+      router.push("/login");
       return;
 }
 

@@ -37,6 +37,8 @@ export default function Settings() {
 
       setFullName(data.full_name);
       setDomain(data.domain);
+
+      
     
   }
 

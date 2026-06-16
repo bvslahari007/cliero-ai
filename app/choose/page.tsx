@@ -9,6 +9,28 @@ import { useRouter } from "next/navigation";
 export default function ChooseDomain() {
   const [domain, setDomain] = useState("");
   const router = useRouter();
+  
+  useEffect(() => {
+  checkProfile();
+}, []);
+
+async function checkProfile() {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) return;
+
+  const { data } = await supabase
+    .from("profiles")
+    .select("user_id")
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  if (data) {
+    router.push("/dashboard");
+  }
+}
 
   async function handleContinue(){
     if (!domain){
@@ -47,7 +69,8 @@ console.log(error);
     if (error) {
   console.log("FULL ERROR:", error);
   if (error?.code === "23505") {
-  alert("Profile already exists.");
+  alert("Profile already exists. Redirecting to dashboard...");
+  router.push("/dashboard");
   return;
 }
   return;
