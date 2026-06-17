@@ -1,9 +1,131 @@
-import { interTight, instrumentSerif } from "@/app/fonts";
+"use client";
+
+import { interTight } from "@/app/fonts";
 import Image from "next/image";
+import { useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export default function AskAI() {
+  const [input, setInput] = useState("");
+  
+
+  const [messages, setMessages] = useState<
+    { role: string; content: string }[]
+  >([
+    {
+      role: "assistant",
+      content: "Let's make today productive. What would you like to learn?",
+    },
+  ]);
+
+  const [loading, setLoading] = useState(false);
+
+  async function handleSend() {
+    if (!input.trim()) return;
+
+    const userMessage = {
+      role: "user",
+      content: input,
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+
+    const currentInput = input;
+    setInput("");
+
+    setLoading(true);
+
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: currentInput,
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+  throw new Error("Request failed");
+}
+
+      const aiMessage = {
+  role: "assistant",
+  content:
+    data.reply ||
+    data.error ||
+    "No response received.",
+};
+
+      setMessages((prev) => [...prev, aiMessage]);
+    } catch (error) {
+      console.error(error);
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content:
+            "Something went wrong. Please try again in a moment.",
+        },
+      ]);
+    }
+
+    setLoading(false);
+  }
+
+  async function sendPrompt(prompt: string) {
+  const userMessage = {
+    role: "user",
+    content: prompt,
+  };
+
+  setMessages((prev) => [...prev, userMessage]);
+
+  setLoading(true);
+
+  try {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message: prompt,
+      }),
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+  throw new Error("Request failed");
+}
+
+    setMessages((prev) => [
+      ...prev,
+      {
+        role: "assistant",
+        content: data.reply,
+      },
+    ]);
+  } catch {
+    setMessages((prev) => [
+      ...prev,
+      {
+        role: "assistant",
+        content:
+          "Something went wrong. Please try again.",
+      },
+    ]);
+  }
+
+  setLoading(false);
+}
+
   return (
-    <div className="notebook-bg h-screen bg-white p-8 md:p-12">
+    <div className="notebook-bg h-screen bg-white p-9 md:p-12">
       <h1
         className={`${interTight.className} text-xl md:text-3xl font-bold text-blue-900`}
       >
@@ -15,64 +137,81 @@ export default function AskAI() {
           mt-2
           rounded-3xl
           h-[75vh]
-          md:h-[72vh]
+          md:h-[80vh]
           flex
           flex-col
         "
       >
-        {/* Messages Area */}
+        {/* Messages */}
         <div
-          className={`${interTight.className} flex-1 p-4 overflow-y-auto`}
+          className={`${interTight.className} flex-1 overflow-y-auto p-4`}
         >
-          {/* AI Welcome Message */}
-          <div className="max-w-xl rounded-2xl bg-blue-50 p-5 shadow-sm">
-            <p className="font-bold text-sm md:text-base text-blue-900">
-              Cliero AI
-            </p>
-
-            <p className="mt-1 text-sm md:text-base font-semibold text-gray-700">
-              Let's make today productive. What would you like to learn?
-            </p>
-          </div>
-
-          {/* User Message Example */}
-          <div className="mt-4 flex justify-end">
+          {messages.map((message, index) => (
             <div
-              className="
-                max-w-xl
-                rounded-2xl
-                bg-blue-900
-                px-5
-                py-3
-                text-white
-                shadow-sm
-              "
+              key={index}
+              className={
+                message.role === "user"
+                  ? "mt-4 flex justify-end"
+                  : "mt-4"
+              }
             >
-              <p className="mb-1 text-xs font-semibold text-white/70">
-                You
+              <div
+                className={
+                  message.role === "user"
+                    ? `
+                      max-w-xl
+                      rounded-2xl
+                      bg-blue-900
+                      px-5
+                      py-3
+                      text-white
+                      shadow-sm
+                    `
+                    :
+                       ` max-w-3xl rounded-2xl bg-blue-50 p-5 shadow-sm`
+                }
+              >
+                <p
+                  className={
+                    message.role === "user"
+                      ? "mb-1 text-xs font-semibold text-white/70"
+                      : "font-bold text-sm md:text-base text-blue-900"
+                  }
+                >
+                  {message.role === "user"
+                    ? "You"
+                    : "Cliero AI"}
+                </p>
+
+                <div
+                  className={
+                    message.role === "user"
+                      ? "text-sm md:text-base"
+                      : "mt-1 text-sm md:text-base text-gray-700"
+                  }
+                >
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {message.content}
+                  </ReactMarkdown>
+                </div>
+              </div>
+            </div>
+          ))}
+
+          {loading && (
+            <div className="mt-4 max-w-3xl rounded-2xl bg-blue-50 p-5 shadow-sm">
+              <p className="font-bold text-sm md:text-base text-blue-900">
+                Cliero AI
               </p>
 
-              <p className="text-sm md:text-base">
-                What is Binary Search?
+              <p className="mt-1 text-sm md:text-base text-gray-700">
+                Thinking...
               </p>
             </div>
-          </div>
-
-          {/* AI Reply Example */}
-          <div className="mt-4 max-w-xl rounded-2xl bg-blue-50 p-5 shadow-sm">
-            <p className="font-bold text-sm md:text-base text-blue-900">
-              Cliero AI
-            </p>
-
-            <p className="mt-1 text-sm md:text-base text-gray-700">
-              Binary Search is an efficient searching algorithm that works on
-              sorted arrays. It repeatedly divides the search space into half
-              until the target element is found.
-            </p>
-          </div>
+          )}
         </div>
 
-        {/* Input Area */}
+        {/* Input */}
         <div className="border-t p-4">
           <p
             className={`${interTight.className} mb-3 text-center text-xs text-gray-400`}
@@ -84,7 +223,14 @@ export default function AskAI() {
           <div className="flex gap-3">
             <input
               type="text"
-              placeholder="Ask anything..."
+              placeholder="Ask your doubts here..."
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSend();
+                }
+              }}
               className={`${interTight.className}
                 flex-1
                 text-sm md:text-base
@@ -101,6 +247,8 @@ export default function AskAI() {
             />
 
             <button
+              onClick={handleSend}
+              disabled={loading}
               className="
                 hover:shadow-md
                 transition-all
@@ -119,78 +267,6 @@ export default function AskAI() {
         </div>
       </div>
 
-      {/* Prompt Suggestions */}
-      <div
-        className={`${interTight.className} hidden md:flex mt-4 flex-wrap gap-2`}
-      >
-        <button
-          className="
-            rounded-full
-            bg-blue-100
-            px-4
-            py-2
-            text-xs md:text-sm
-            font-medium
-            text-blue-900
-            transition-all
-            duration-300
-            hover:bg-blue-200
-          "
-        >
-          Why find the middle element in Binary Search?
-        </button>
-
-        <button
-          className="
-            rounded-full
-            bg-blue-100
-            px-4
-            py-2
-            text-xs md:text-sm
-            font-medium
-            text-blue-900
-            transition-all
-            duration-300
-            hover:bg-blue-200
-          "
-        >
-          What is Recursion?
-        </button>
-
-        <button
-          className="
-            rounded-full
-            bg-blue-100
-            px-4
-            py-2
-            text-xs md:text-sm
-            font-medium
-            text-blue-900
-            transition-all
-            duration-300
-            hover:bg-blue-200
-          "
-        >
-          Teach me SQL Joins
-        </button>
-
-        <button
-          className="
-            rounded-full
-            bg-blue-100
-            px-4
-            py-2
-            text-xs md:text-sm
-            font-medium
-            text-blue-900
-            transition-all
-            duration-300
-            hover:bg-blue-200
-          "
-        >
-          Explain Load Balancing in detail. Relate to real life examples.
-        </button>
-      </div>
     </div>
   );
 }
