@@ -45,7 +45,7 @@ export default function WelcomeSection(){
             </p>
 
             <h1 className={`${interTight.className} mt-2 text-3xl md:text-4xl font-bold text-blue-900`}>
-                Let's make today productive, {firstName || "Learner"} ✨
+                Let's make today productive, {firstName || "Learner"}
             </h1>
             <p className={`${instrumentSerif.className} mt-3 max-w-full text-gray-500 text-2xl`}>
                 Ready to clear the cloudy bits? Pick a tool below,
