@@ -11,7 +11,7 @@ export default function DashboardPage() {
     <div className="notebook-bg min-h-screen">
       <WelcomeSection />
       <div className="grid gap-10 p-5 md:grid-cols-3">
-        <ActionCard title="Ask AI" description="Beginner-friendly explanations, step-by-step breakdowns, and academic support - whenever a concept feels cloudy." link="/ask-ai" icon={<Sparkles />} />
+        <ActionCard title="Ask AI" description="Beginner-friendly explanations, step-by-step breakdowns, and academic support - whenever a concept feels cloudy." link="/dashboard/ask-ai" icon={<Sparkles />} />
         <ActionCard title="Smart Notes Generator" description="Turn any topic into structured study notes - summaries
 formulas, worked examples, and revision points." link="/action" icon={<NotebookPen />} />
         <ActionCard title="Library" description="Every question you've asked and every note you've

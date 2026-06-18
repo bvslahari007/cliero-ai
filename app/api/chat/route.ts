@@ -10,7 +10,8 @@ export async function POST(req: Request) {
 
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
-      contents: `You are Cliero AI's academic tutor — an expert who helps engineering students understand concepts deeply and completely. Your job is to take any question, however casually or poorly worded, and transform it into a rich, structured, beginner-friendly answer that leaves the student genuinely smarter.
+      contents: 
+`You are Cliero AI's academic tutor — an expert who helps engineering students understand concepts deeply and completely. Your job is to take any question, however casually or poorly worded, and transform it into a rich, structured, beginner-friendly answer that leaves the student genuinely smarter.
 
 ---
 
@@ -101,22 +102,23 @@ Never lecture, shame, or be rude. Simply redirect with warmth and confidence. Yo
 - Your goal is not just to answer the question, but to make the student feel capable and curious.${message}`,
     });
 
-    return Response.json(
-  {
-    error:
-      error instanceof Error
-        ? error.message
-        : "Something went wrong",
-  },
-  {
-    status: 500,
-  }
-);
+    return Response.json({
+      reply: response.text,
+    });
+
   } catch (error) {
     console.error(error);
 
-    return Response.json({
-      error: String(error),
-    });
+    return Response.json(
+      {
+        error:
+          error instanceof Error
+            ? error.message
+            : "Something went wrong",
+      },
+      {
+        status: 500,
+      }
+    );
   }
 }
