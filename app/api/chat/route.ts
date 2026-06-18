@@ -10,9 +10,13 @@ const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY!,
 });
 
+
+
 export async function POST(req: Request) {
   try {
     const { message, userId } = await req.json();
+
+    
 
     if (!userId) {
       return Response.json(
@@ -50,6 +54,8 @@ export async function POST(req: Request) {
           .eq("user_id", userId);
       }
 
+      
+
       if (usage.requests_today >= 20) {
         return Response.json(
           {
@@ -62,6 +68,8 @@ export async function POST(req: Request) {
         );
       }
     }
+
+    
 
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
@@ -143,32 +151,78 @@ ${message}
 `,
     });
 
-    const currentCount = usage?.requests_today ?? 0;
+    if (!response.text) {
+  return Response.json(
+    {
+      error:
+        "Cliero AI couldn't generate a response right now. Please try again.",
+    },
+    {
+      status: 500,
+    }
+  );
+}
 
-    await supabase
-      .from("ai_usage")
-      .upsert({
-        user_id: userId,
-        requests_today: currentCount + 1,
-        last_reset: today,
-      });
+const currentCount = usage?.requests_today ?? 0;
 
-    return Response.json({
-      reply: response.text,
-    });
-  } catch (error) {
-    console.error(error);
+await supabase
+  .from("ai_usage")
+  .upsert({
+    user_id: userId,
+    requests_today: currentCount + 1,
+    last_reset: today,
+  });
 
+return Response.json({
+  reply: response.text,
+});
+  }  catch (error) {
+  console.error(error);
+
+  if (
+    error instanceof Error &&
+    (
+      error.message.includes("503") ||
+      error.message.includes("high demand") ||
+      error.message.includes("SERVICE_UNAVAILABLE")
+    )
+  ) {
     return Response.json(
       {
         error:
-          error instanceof Error
-            ? error.message
-            : "Something went wrong",
+          "Cliero AI is experiencing high demand right now. Please try again in a minute. 🚀",
       },
       {
-        status: 500,
+        status: 503,
       }
     );
   }
+
+  if (
+    error instanceof Error &&
+    error.message.includes("429")
+  ) {
+    return Response.json(
+      {
+        error:
+          "Cliero AI is currently busy. Please wait a little and try again.",
+      },
+      {
+        status: 429,
+      }
+    );
+  }
+
+  return Response.json(
+    {
+      error:
+        error instanceof Error
+          ? error.message
+          : "Something went wrong",
+    },
+    {
+      status: 500,
+    }
+  );
+}
 }

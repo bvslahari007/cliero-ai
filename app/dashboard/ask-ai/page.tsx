@@ -144,7 +144,7 @@ export default function AskAI() {
                   className={
                     message.role === "user"
                       ? "text-sm md:text-base"
-                      : "mt-1 text-sm md:text-base text-gray-700"
+                      : "prose prose-sm max-w-none mt-1 text-gray-700"
                   }
                 >
                   <ReactMarkdown remarkPlugins={[remarkGfm]}>
