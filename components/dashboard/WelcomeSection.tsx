@@ -37,8 +37,8 @@ export default function WelcomeSection(){
     }, []);
 
     return(
-        <section className="py-5 px-10">
-            <div className="flex items-center gap-40">
+        <section className="py-3 px-10">
+            <div className="flex items-center gap-30">
                 <div>
             <p className={`${instrumentSerif.className} mt-4 text-3xl font-bold text-blue-900`}>
                 Learn smarter today

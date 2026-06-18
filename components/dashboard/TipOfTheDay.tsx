@@ -1,4 +1,10 @@
-const tips = [
+"use client";
+
+import { interTight } from "@/app/fonts";
+import { useMemo } from "react";
+
+export default function TipOfTheDay() {
+  const tips = [
   // 💼 Career & Job Opportunities
   "Update your LinkedIn profile today — recruiters search for students daily.",
   "Apply to internships 3–6 months before the start date, not last minute.",
@@ -93,9 +99,7 @@ const tips = [
   "Stop waiting to feel motivated — action creates motivation, not the other way around.",
   "Compare yourself only to who you were yesterday, not to others.",
   "Embrace failure as data — every mistake tells you exactly what to fix.",
-  "Read one biography per year of someone who built something great.",
   "Discomfort is a signal you're growing — seek it, don't avoid it.",
-  "The people you spend the most time with determine your trajectory.",
   "A fixed mindset says 'I'm not smart.' A growth mindset says 'I'm not smart yet.'",
   "Skills compound — every hour you invest in learning returns dividends for decades.",
   "You don't rise to your goals. You fall to the level of your systems.",
@@ -107,3 +111,36 @@ const tips = [
   "A strong personal brand means opportunities come to you, not the other way around.",
   "Volunteer for visible roles — leading a college event goes on your resume and your reputation.",
 ];
+
+  const tip = useMemo(() => {
+   const today = new Date();
+
+const start = new Date(today.getFullYear(), 0, 0);
+
+const diff =
+  today.getTime() - start.getTime();
+
+const day =
+  Math.floor(diff / (1000 * 60 * 60 * 24));
+
+return tips[day % tips.length];
+  }, []);
+
+  return (
+    <div className="mx-auto w-full max-w-2xl flex justify-center">
+    <div className="rounded-3xl border border-blue-200 bg-white p-6 hover:shadow-lg">
+      <p
+        className={`${interTight.className} text-lg text-center font-bold text-blue-900`}
+      >
+        Tip of the Day
+      </p>
+
+      <p
+        className={`${interTight.className} text-center mt-1 text-gray-700`}
+      >
+        {tip}
+      </p>
+    </div>
+    </div>
+  );
+}
