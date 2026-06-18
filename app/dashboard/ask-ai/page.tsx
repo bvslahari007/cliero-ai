@@ -5,124 +5,81 @@ import Image from "next/image";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { supabase } from "@/lib/supabase";
 
 export default function AskAI() {
   const [input, setInput] = useState("");
-  
 
   const [messages, setMessages] = useState<
     { role: string; content: string }[]
   >([
     {
       role: "assistant",
-      content: "Let's make today productive. What would you like to learn?",
+      content:
+        "Let's make today productive. What would you like to learn?",
     },
   ]);
 
   const [loading, setLoading] = useState(false);
 
   async function handleSend() {
-    if (!input.trim()) return;
+  if (!input.trim()) return;
 
-    const userMessage = {
-      role: "user",
-      content: input,
-    };
-
-    setMessages((prev) => [...prev, userMessage]);
-
-    const currentInput = input;
-    setInput("");
-
-    setLoading(true);
-
-    try {
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          message: currentInput,
-        }),
-      });
-
-      const data = await response.json();
-      if (!response.ok) {
-  throw new Error("Request failed");
-}
-
-      const aiMessage = {
-  role: "assistant",
-  content:
-    data.reply ||
-    data.error ||
-    "No response received.",
-};
-
-      setMessages((prev) => [...prev, aiMessage]);
-    } catch (error) {
-      console.error(error);
-
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content:
-            "Something went wrong. Please try again in a moment.",
-        },
-      ]);
-    }
-
-    setLoading(false);
-  }
-
-  async function sendPrompt(prompt: string) {
   const userMessage = {
     role: "user",
-    content: prompt,
+    content: input,
   };
 
   setMessages((prev) => [...prev, userMessage]);
 
+  const currentInput = input;
+
+  setInput("");
   setLoading(true);
 
   try {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
     const response = await fetch("/api/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        message: prompt,
+        message: currentInput,
+        userId: user?.id,
       }),
     });
 
     const data = await response.json();
-    if (!response.ok) {
-  throw new Error("Request failed");
-}
 
-    setMessages((prev) => [
-      ...prev,
-      {
-        role: "assistant",
-        content: data.reply,
-      },
-    ]);
-  } catch {
+    const aiMessage = {
+      role: "assistant",
+      content:
+        data.reply ||
+        data.error ||
+        "No response received.",
+    };
+
+    setMessages((prev) => [...prev, aiMessage]);
+  } catch (error) {
+    console.error(error);
+
     setMessages((prev) => [
       ...prev,
       {
         role: "assistant",
         content:
-          "Something went wrong. Please try again.",
+          "Something went wrong. Please try again in a moment.",
       },
     ]);
   }
 
   setLoading(false);
 }
+
 
   return (
     <div className="notebook-bg h-screen bg-white p-9 md:p-12">
