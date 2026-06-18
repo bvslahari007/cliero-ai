@@ -82,7 +82,7 @@ export default function AskAI() {
 
 
   return (
-    <div className="notebook-bg h-screen bg-white p-9 md:p-12">
+    <div className="notebook-bg min-h-screen bg-white p-9 md:p-12">
       <h1
         className={`${interTight.className} text-xl md:text-3xl font-bold text-blue-900`}
       >
@@ -90,15 +90,13 @@ export default function AskAI() {
       </h1>
 
       <div
-        className="
-          mt-2
-          rounded-3xl
-          h-[75vh]
-          md:h-[80vh]
-          flex
-          flex-col
-        "
-      >
+  className="
+    mt-2
+    flex
+    flex-col
+    h-[calc(100vh-140px)]
+  "
+>
         {/* Messages */}
         <div
           className={`${interTight.className} flex-1 overflow-y-auto p-4`}
@@ -125,7 +123,7 @@ export default function AskAI() {
                       shadow-sm
                     `
                     :
-                       ` max-w-3xl rounded-2xl bg-blue-50 p-5 shadow-sm`
+                       ` max-w-3xl rounded-2xl bg-blue-50 p-5 shadow-sm break-words overflow-hidden`
                 }
               >
                 <p
