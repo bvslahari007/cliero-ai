@@ -142,12 +142,53 @@ export default function AskAI() {
                   className={
                     message.role === "user"
                       ? "text-sm md:text-base"
-                      : "prose prose-sm max-w-none mt-1 text-gray-700"
+                      : "mt-1 text-gray-700"
                   }
                 >
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                    {message.content}
-                  </ReactMarkdown>
+                  <div className="mt-1 text-gray-700">
+  <ReactMarkdown
+    remarkPlugins={[remarkGfm]}
+    components={{
+      h1: ({ children }) => (
+        <h1 className="text-3xl font-bold text-blue-900 mb-4">
+          {children}
+        </h1>
+      ),
+      h2: ({ children }) => (
+        <h2 className="text-2xl font-bold text-blue-900 mt-6 mb-3">
+          {children}
+        </h2>
+      ),
+      h3: ({ children }) => (
+        <h3 className="text-xl font-semibold text-blue-900 mt-4 mb-2">
+          {children}
+        </h3>
+      ),
+      p: ({ children }) => (
+        <p className="mb-3 leading-relaxed">
+          {children}
+        </p>
+      ),
+      ul: ({ children }) => (
+        <ul className="list-disc pl-6 mb-3">
+          {children}
+        </ul>
+      ),
+      ol: ({ children }) => (
+        <ol className="list-decimal pl-6 mb-3">
+          {children}
+        </ol>
+      ),
+      strong: ({ children }) => (
+        <strong className="font-bold text-blue-900">
+          {children}
+        </strong>
+      ),
+    }}
+  >
+    {message.content}
+  </ReactMarkdown>
+</div>
                 </div>
               </div>
             </div>
