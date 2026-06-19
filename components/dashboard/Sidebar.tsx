@@ -87,7 +87,7 @@ export default function Sidebar() {
           Ask AI
         </Link>
 
-        <Link href="/dashboard/notes" className={linkStyles("/dashboard/notes")}>
+        <Link href="/dashboard/notes-generator" className={linkStyles("/dashboard/notes")}>
           <NotebookPen size={18} />
           Notes Generator
         </Link>

@@ -102,7 +102,6 @@ export default function TipOfTheDay() {
   "Discomfort is a signal you're growing — seek it, don't avoid it.",
   "A fixed mindset says 'I'm not smart.' A growth mindset says 'I'm not smart yet.'",
   "Skills compound — every hour you invest in learning returns dividends for decades.",
-  "You don't rise to your goals. You fall to the level of your systems.",
 
   // 🌍 Personal Branding
   "Post one thing you've learned every week on LinkedIn — consistency builds authority.",
@@ -132,7 +131,7 @@ return tips[day % tips.length];
       <p
         className={`${interTight.className} text-lg text-center font-bold text-blue-900`}
       >
-        Tip of the Day
+        1Line Tip of the Day
       </p>
 
       <p

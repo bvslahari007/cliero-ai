@@ -160,8 +160,7 @@ async function handleLogout() {
   hover:scale-105
   hover:shadow-lg
   active:scale-95
-  hover:bg-blue-800
-          "
+hover:bg-blue-700          "
           onClick={handleSave}
         >
           Save Changes
