@@ -60,6 +60,12 @@ export default function NotesGenerator() {
           >
             Generate Notes
           </button>
+          <p
+            className={`${interTight.className} mt-4 mb-3 text-center text-xs text-gray-400`}
+          >
+            Cliero AI may occasionally make mistakes in notes generation. Verify important
+            information.
+          </p>
         </div>
 
         {/* Right Panel */}
@@ -75,6 +81,7 @@ export default function NotesGenerator() {
           >
             Your generated notes will appear here.
           </p>
+          
         </div>
       </div>
     </div>
