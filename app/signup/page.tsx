@@ -79,7 +79,7 @@ alert(error.message);
   href="/"
   className="
     self-start
-    mt-4
+    mt-2
     mb-2
     text-lg
     font-medium
@@ -88,36 +88,36 @@ alert(error.message);
     duration-300
   "
 >
-  ← Back to Home
+  ← Home
 </Link>
       {/* Logo */}
       <div className="flex justify-center">
         <Image
           src="/sign-up-logo.png"
           alt="Logo"
-          width={130}
-          height={130}
+          width={120}
+          height={120}
         />
       </div>
 
       {/* Headings */}
       <section
-        className={`${instrumentSerif.className} leading-relaxed text-center`}
+        className={`${instrumentSerif.className} text-center`}
       >
-        <h2 className="text-2xl md:text-4xl">
+        <h2 className="text-2xl md:text-3xl">
           Start your Personalised Journey today!
         </h2>
 
-        <h1 className="text-4xl md:text-6xl">
+        <h1 className="text-4xl md:text-5xl">
           Create your account!
         </h1>
       </section>
 
       {/* Form */}
-      <div className="mt-6 max-w-md w-full">
+      <div className="mt-4 max-w-md w-full">
         {/* Full Name */}
         <label
-          className={`${instrumentSerif.className} block mb-2 text-xl md:text-2xl`}
+          className={`${instrumentSerif.className} block mb-1 text-xl md:text-2xl`}
         >
           Full Name
         </label>
@@ -230,7 +230,7 @@ alert(error.message);
       </div>
 
       {/* Google Section */}
-      <div className="mt-4 flex flex-col items-center">
+      <div className="mt-2 flex flex-col items-center">
         <p
           className={`${instrumentSerif.className} text-xl md:text-2xl`}
         >
