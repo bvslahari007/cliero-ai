@@ -1,6 +1,6 @@
 "use client";
 
-import { interTight } from "@/app/fonts";
+import { instrumentSerif, interTight } from "@/app/fonts";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import ReactMarkdown from "react-markdown";
@@ -128,7 +128,7 @@ async function handleDelete(id: string) {
       {selectedNote.title}
     </h2>
 
-    <div className="mt-6 text-gray-700">
+    <div className={`${interTight.className} mt-6 text-gray-700`}>
   <ReactMarkdown remarkPlugins={[remarkGfm]}>
     {selectedNote.content}
   </ReactMarkdown>
