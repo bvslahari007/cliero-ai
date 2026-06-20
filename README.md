@@ -137,7 +137,11 @@ Building Cliero AI helped me gain hands-on experience with:
 ---
 
 ## Screenshots
-![alt text](image.png)_Add screenshots of the landing page, dashboard, Ask AI, Notes Generator, and Library here._
+<img width="1536" height="697" alt="image" src="https://github.com/user-attachments/assets/0e9e0608-1ed6-4f8f-9db8-b6fc2bde46a2" />
+<img width="1536" height="692" alt="image" src="https://github.com/user-attachments/assets/c22e1557-755c-4b79-87fa-1df21f87b278" />
+<img width="1536" height="696" alt="image" src="https://github.com/user-attachments/assets/7a154f0c-7317-4ecc-bb1e-ab78783e14c9" />
+<img width="1536" height="697" alt="image" src="https://github.com/user-attachments/assets/18896a66-bd0f-4152-ad8d-5701d72b35cb" />
+<img width="1536" height="696" alt="image" src="https://github.com/user-attachments/assets/988174a9-bb01-478b-9da5-dfce8bf013a2" />
 
 ---
 
