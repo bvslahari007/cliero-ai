@@ -3,6 +3,8 @@
 import { interTight } from "@/app/fonts";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export default function Library() {
     const [notes, setNotes] = useState<any[]>([]);
@@ -75,11 +77,11 @@ export default function Library() {
       {selectedNote.title}
     </h2>
 
-    <div
-      className={`${interTight.className} mt-6 whitespace-pre-wrap text-gray-700`}
-    >
-      {selectedNote.content}
-    </div>
+    <div className="mt-6 text-gray-700">
+  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+    {selectedNote.content}
+  </ReactMarkdown>
+</div>
   </>
 ) : (
   <p
