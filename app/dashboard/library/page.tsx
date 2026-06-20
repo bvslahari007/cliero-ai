@@ -42,19 +42,7 @@ export default function Library() {
         
         {/* Left Panel */}
         <div className="rounded-3xl border border-gray-100 bg-blue-900 p-6 shadow-sm overflow-y-auto">
-          <p
-            className={`${interTight.className} text-sm text-white`}
-          >
-            Your saved notes will appear here.
-          </p>
-        </div>
-
-        {/* Right Panel */}
-        <div className="lg:col-span-2 rounded-3xl border border-gray-100 bg-white p-8 shadow-sm overflow-y-auto">
-          <p
-            className={`${interTight.className} text-center text-gray-400`}
-          >
-            {notes.map((note) => (
+          {notes.map((note) => (
   <div
     key={note.id}
     className="mb-3 rounded-2xl border border-blue-100 p-4"
@@ -63,7 +51,15 @@ export default function Library() {
       {note.title}
     </p>
   </div>
-))}.
+))}
+        </div>
+
+        {/* Right Panel */}
+        <div className="lg:col-span-2 rounded-3xl border border-gray-100 bg-white p-8 shadow-sm overflow-y-auto">
+          <p
+            className={`${interTight.className} text-center text-gray-400`}
+          >
+            Select a note to view.
           </p>
         </div>
 
