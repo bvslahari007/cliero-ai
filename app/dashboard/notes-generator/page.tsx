@@ -5,87 +5,82 @@ import { interTight } from "@/app/fonts";
 import { supabase } from "@/lib/supabase";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 
-
 export default function NotesGenerator() {
   const [topic, setTopic] = useState("");
   const [notes, setNotes] = useState("");
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
 
- async function handleSave() {
-  if (!notes.trim()) return;
+  async function handleSave() {
+    if (!notes.trim()) return;
 
-  setSaving(true);
+    setSaving(true);
 
-  try {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+    try {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
 
-    if (!user) {
-      alert("Please sign in first.");
-      return;
+      if (!user) {
+        alert("Please sign in first.");
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from("notes")
+        .insert({
+          user_id: user.id,
+          title: topic,
+          content: notes,
+        })
+        .select();
+
+      console.log("DATA:", data);
+      console.log("ERROR:", error);
+
+      if (error) {
+        alert(JSON.stringify(error, null, 2));
+        throw error;
+      }
+
+      alert("Notes saved successfully in the Library!");
+    } catch (error) {
+      console.error(error);
+      alert("Failed to save notes.");
     }
 
-    const { data, error } = await supabase
-  .from("notes")
-  .insert({
-    user_id: user.id,
-    title: topic,
-    content: notes,
-  })
-  .select();
-
-console.log("DATA:", data);
-console.log("ERROR:", error);
-
-if (error) {
-  alert(JSON.stringify(error, null, 2));
-  throw error;
-}
-
-    alert("Notes saved successfully in the Library!");
-  } catch (error) {
-    console.error(error);
-    alert("Failed to save notes.");
+    setSaving(false);
   }
-
-  setSaving(false);
-}
 
   async function handleGenerate() {
-  if (!topic.trim()) return;
+    if (!topic.trim()) return;
 
-  setLoading(true);
+    setLoading(true);
 
-  try {
-    const response = await fetch("/api/notes", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        topic,
-      }),
-    });
+    try {
+      const response = await fetch("/api/notes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          topic,
+        }),
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    setNotes(
-      data.notes ||
-      data.error ||
-      "Failed to generate notes."
-    );
-  } catch (error) {
-    console.error(error);
+      setNotes(data.notes || data.error || "Failed to generate notes.");
+    } catch (error) {
+      console.error(error);
 
-    setNotes(
-      "Cliero AI is experiencing high demand right now. Please try again in a minute. 🚀"
-    );
+      setNotes(
+        "Cliero AI is experiencing high demand right now. Please try again in a minute. 🚀",
+      );
+    }
+
+    setLoading(false);
   }
-
-  setLoading(false);
-}
 
   return (
     <div className="notebook-bg min-h-screen bg-white p-9 md:p-12">
@@ -97,13 +92,12 @@ if (error) {
 
       <div className="mt-8 grid gap-8 lg:grid-cols-3 lg:h-[calc(100vh-180px)]">
         {/* Left Panel */}
-<div className="h-fit rounded-3xl border border-gray-100 bg-white p-6 shadow-sm">          <p
-            className={`${interTight.className} mt-2 text-sm text-gray-500`}
-          >
+        <div className="h-fit rounded-3xl border border-gray-100 bg-white p-6 shadow-sm">
+          {" "}
+          <p className={`${interTight.className} mt-2 text-sm text-gray-500`}>
             Enter any topic and Cliero will create structured study notes for
             you.
           </p>
-
           <textarea
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
@@ -123,7 +117,6 @@ if (error) {
               focus:ring-blue-800
             `}
           />
-
           <button
             onClick={handleGenerate}
             disabled={loading}
@@ -144,9 +137,9 @@ if (error) {
             {loading ? "Generating..." : "Generate Notes"}
           </button>
           <button
-  onClick={handleSave}
-  disabled={!notes || saving}
-  className={`${interTight.className}
+            onClick={handleSave}
+            disabled={!notes || saving}
+            className={`${interTight.className}
     mt-3
     w-full
     rounded-2xl
@@ -163,24 +156,23 @@ if (error) {
     disabled:cursor-not-allowed
     disabled:opacity-50
   `}
->
-  {saving ? "Saving..." : "Save Notes"}
-</button>
+          >
+            {saving ? "Saving..." : "Save Notes"}
+          </button>
           <p
             className={`${interTight.className} mt-4 mb-3 text-center text-xs text-gray-400`}
           >
-            Cliero AI may occasionally make mistakes in notes generation. Verify important
-            information.
+            Cliero AI may occasionally make mistakes in notes generation. Verify
+            important information.
           </p>
         </div>
 
         {/* Right Panel */}
-        
-        <div className="h-full lg:col-span-2 rounded-3xl border border-gray-100 bg-white p-8 shadow-sm overflow-y-auto">
 
+        <div className="h-full lg:col-span-2 rounded-3xl border border-gray-100 bg-white p-8 shadow-sm overflow-y-auto">
           {notes ? (
-<div
-  className={`${interTight.className}
+            <div
+              className={`${interTight.className}
     prose
     text-blue-900
     prose-sm
@@ -188,17 +180,16 @@ if (error) {
     prose-headings:text-blue-900
     prose-strong:text-blue-900
   `}
->
-  <MarkdownRenderer content={notes} />
-</div>
-) : (
-  <p
-    className={`${interTight.className} mt-4 text-center text-gray-400`}
-  >
-    Your generated notes will appear here.
-  </p>
-)}
-          
+            >
+              <MarkdownRenderer content={notes} />
+            </div>
+          ) : (
+            <p
+              className={`${interTight.className} mt-4 text-center text-gray-400`}
+            >
+              Your generated notes will appear here.
+            </p>
+          )}
         </div>
       </div>
     </div>

@@ -1,87 +1,159 @@
 # Cliero AI
 
-<img width="500" height="500" alt="2" src="https://github.com/user-attachments/assets/e9278e1e-6210-46e0-ab55-486801415afa" />
+<img width="500" height="500" alt="Cliero AI Logo" src="https://github.com/user-attachments/assets/e9278e1e-6210-46e0-ab55-486801415afa" />
 
-# Cliero AI (🚧 Currently under active development.)
+## Learn Smarter. Build Stronger.
 
-An AI-powered study companion designed to help students learn smarter, clear doubts faster, and generate structured notes effortlessly.
+Cliero AI is an AI-powered study companion designed to help students understand concepts faster, generate structured notes, and build a personalized knowledge library for revision and learning.
+
+Built as my personal full-stack development project, Cliero AI combines modern web technologies, artificial intelligence, authentication, and cloud databases to create a focused academic learning experience.
 
 ## Live Demo
 
-🔗 [https://cliero-ai.vercel.app](https://cliero-ai.vercel.app/)
+🔗 https://cliero-ai.vercel.app
 
-## About
-
-Cliero AI is my personal full-stack development project built to help students study more effectively.
-
-The goal is to provide a clean, student-friendly platform where users can:
-
-* Ask AI academic questions
-* Generate smart study notes
-* Save learning progress
-* Access previous notes and questions
-* Learn with a personalised experience
+---
 
 ## Features
 
-### Current (Landing Page V1)
+### Ask AI
 
-* Responsive landing page
-* Mobile-friendly design
-* Custom illustrations and animations
-* Interactive call-to-action sections
-* Reusable component architecture
-* Deployed on Vercel
+Ask academic questions and receive structured, beginner-friendly explanations designed to help students truly understand concepts rather than memorize answers.
 
-### Planned Features
+### Smart Notes Generator
 
-* User Authentication
-* Student Onboarding
-* AI Question Answering
-* Smart Notes Generator
-* Notes Library
-* Question History
-* Personal Dashboard
+Generate comprehensive study notes from any topic.
+
+Notes are curated to cover key concepts, explanations, examples, and revision points that a student should know.
+
+### Personal Notes Library
+
+Save generated notes to your personal library and access them anytime.
+
+Features include:
+
+- View saved notes
+- Organize learning materials
+- Delete notes when no longer needed
+
+### Authentication
+
+Secure sign up and sign in functionality powered by Supabase Authentication.
+
+### Daily AI Usage Limits
+
+Built-in usage tracking helps manage AI requests and maintain platform reliability.
+
+### Responsive Design
+
+Fully responsive experience across desktop and mobile devices.
+
+---
 
 ## Tech Stack
 
 ### Frontend
 
-* Next.js
-* React
-* TypeScript
-* Tailwind CSS
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+
+### Backend
+
+- Next.js API Routes
+- Google Gemini API
+
+### Database & Authentication
+
+- Supabase
+- PostgreSQL
+- Supabase Authentication
 
 ### Deployment
 
-* Vercel
+- Vercel
 
-### Planned Backend
+---
 
-* Firebase Authentication
-* Firestore Database
-* Gemini / OpenAI API
+## Architecture
+
+```text
+User
+  ↓
+Next.js Frontend
+  ↓
+API Routes
+  ↓
+Gemini API
+  ↓
+Supabase Database
+  ↓
+Personal Notes Library
+```
+
+---
 
 ## Project Status
 
-🚧 Currently under active development.
+### Cliero AI V1 Complete
 
-Landing Page V1 is complete and deployed.
+Current Version Includes:
 
-The next phase includes authentication, dashboard development, and AI-powered study tools.
+- User Authentication
+- AI Question Answering
+- Smart Notes Generation
+- Notes Saving
+- Personal Notes Library
+- Note Deletion
+- Dashboard Experience
+- Responsive User Interface
+
+### Planned Improvements
+
+- Question History
+- Advanced Search
+- AI-Powered Revision Tools
+- Learning Analytics
+- Personalized Study Recommendations
+- New Features
+- Enhanced Dashboard
+
+---
+
+## What I Learned
+
+Building Cliero AI helped me gain hands-on experience with:
+
+- Full-stack web development
+- Authentication systems
+- Database design
+- API development
+- AI integration
+- CRUD operations
+- Deployment workflows
+- Debugging real-world backend issues
+
+---
+
+## Screenshots
+![alt text](image.png)_Add screenshots of the landing page, dashboard, Ask AI, Notes Generator, and Library here._
+
+---
 
 ## Author
 
-Built with ♥ by Lahari
+**Lahari B.V.S.**
 
-Computer Science & Engineering Student at GITAM Deemed University
+Computer Science & Engineering Student  
+GITAM (Deemed to be University)
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Built as a personal project to learn full-stack development and AI-powered application development.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
 
 ## License
 
 This project is proprietary and protected by copyright.
 
-See the LICENSE file for details.
+All rights reserved
