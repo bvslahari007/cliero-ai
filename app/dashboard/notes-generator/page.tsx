@@ -27,17 +27,22 @@ export default function NotesGenerator() {
       return;
     }
 
-    const { error } = await supabase
-      .from("notes")
-      .insert({
-        user_id: user.id,
-        title: topic,
-        content: notes,
-      });
+    const { data, error } = await supabase
+  .from("notes")
+  .insert({
+    user_id: user.id,
+    title: topic,
+    content: notes,
+  })
+  .select();
 
-    if (error) {
-      throw error;
-    }
+console.log("DATA:", data);
+console.log("ERROR:", error);
+
+if (error) {
+  alert(JSON.stringify(error, null, 2));
+  throw error;
+}
 
     alert("Notes saved successfully!");
   } catch (error) {
