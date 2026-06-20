@@ -44,7 +44,7 @@ if (error) {
   throw error;
 }
 
-    alert("Notes saved successfully!");
+    alert("Notes saved successfully in the Library!");
   } catch (error) {
     console.error(error);
     alert("Failed to save notes.");

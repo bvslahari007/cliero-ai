@@ -4,7 +4,7 @@ import { instrumentSerif, interTight } from "@/app/fonts";
 
 export default function Footer(){
     return(
-    <footer className="bg-blue-900 py-6 px-6">
+    <footer className="dots-bg bg-blue-900 py-6 px-6">
 
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
 
