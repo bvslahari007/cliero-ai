@@ -45,9 +45,9 @@ export default function Library() {
           {notes.map((note) => (
   <div
     key={note.id}
-    className="mb-3 rounded-2xl border border-blue-100 p-4"
+    className="mb-3 rounded-2xl border border-blue-100 p-3"
   >
-    <p className="font-semibold text-blue-900">
+    <p className="font-semibold text-white">
       {note.title}
     </p>
   </div>
