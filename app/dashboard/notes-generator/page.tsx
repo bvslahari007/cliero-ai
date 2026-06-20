@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { interTight, instrumentSerif } from "@/app/fonts";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import { interTight } from "@/app/fonts";
 import { supabase } from "@/lib/supabase";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
+
 
 export default function NotesGenerator() {
   const [topic, setTopic] = useState("");
@@ -189,9 +189,7 @@ if (error) {
     prose-strong:text-blue-900
   `}
 >
-  <ReactMarkdown remarkPlugins={[remarkGfm]}>
-    {notes}
-  </ReactMarkdown>
+  <MarkdownRenderer content={notes} />
 </div>
 ) : (
   <p

@@ -1,10 +1,10 @@
 "use client";
 
-import { instrumentSerif, interTight } from "@/app/fonts";
+import { interTight } from "@/app/fonts";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
+
 import {
   Trash2
 } from "lucide-react";
@@ -129,9 +129,7 @@ async function handleDelete(id: string) {
     </h2>
 
     <div className={`${interTight.className} mt-6 text-gray-700`}>
-  <ReactMarkdown remarkPlugins={[remarkGfm]}>
-    {selectedNote.content}
-  </ReactMarkdown>
+  <MarkdownRenderer content={selectedNote.content} />
 </div>
   </>
 ) : (

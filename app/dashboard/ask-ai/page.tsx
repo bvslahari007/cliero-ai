@@ -3,9 +3,8 @@
 import { interTight } from "@/app/fonts";
 import Image from "next/image";
 import { useState } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import { supabase } from "@/lib/supabase";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
 
 export default function AskAI() {
   const [input, setInput] = useState("");
@@ -146,48 +145,8 @@ export default function AskAI() {
                   }
                 >
                   <div className="mt-1 text-gray-700">
-  <ReactMarkdown
-    remarkPlugins={[remarkGfm]}
-    components={{
-      h1: ({ children }) => (
-        <h1 className="text-3xl font-bold text-blue-900 mb-4">
-          {children}
-        </h1>
-      ),
-      h2: ({ children }) => (
-        <h2 className="text-2xl font-bold text-blue-900 mt-6 mb-3">
-          {children}
-        </h2>
-      ),
-      h3: ({ children }) => (
-        <h3 className="text-xl font-semibold text-blue-900 mt-4 mb-2">
-          {children}
-        </h3>
-      ),
-      p: ({ children }) => (
-        <p className="mb-3 leading-relaxed">
-          {children}
-        </p>
-      ),
-      ul: ({ children }) => (
-        <ul className="list-disc pl-6 mb-3">
-          {children}
-        </ul>
-      ),
-      ol: ({ children }) => (
-        <ol className="list-decimal pl-6 mb-3">
-          {children}
-        </ol>
-      ),
-      strong: ({ children }) => (
-        <strong className="font-bold text-blue-900">
-          {children}
-        </strong>
-      ),
-    }}
-  >
-    {message.content}
-  </ReactMarkdown>
+
+<MarkdownRenderer content={message.content} />
 </div>
                 </div>
               </div>
