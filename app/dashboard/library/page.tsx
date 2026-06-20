@@ -6,6 +6,7 @@ import { supabase } from "@/lib/supabase";
 
 export default function Library() {
     const [notes, setNotes] = useState<any[]>([]);
+    const [selectedNote, setSelectedNote] = useState<any | null>(null);
 
     async function fetchNotes() {
   const {
@@ -44,10 +45,20 @@ export default function Library() {
         <div className="rounded-3xl border border-gray-100 bg-blue-900 p-6 shadow-sm overflow-y-auto">
           {notes.map((note) => (
   <div
-    key={note.id}
-    className="mb-3 rounded-2xl border border-blue-100 p-3"
-  >
-    <p className="font-semibold text-white">
+  key={note.id}
+  onClick={() => setSelectedNote(note)}
+  className="
+    mb-3
+    cursor-pointer
+    rounded-2xl
+    border
+    border-blue-100
+    p-3
+    transition-all
+    hover:bg-blue-800
+  "
+>
+    <p className={`${interTight.className} font-semibold text-white`}>
       {note.title}
     </p>
   </div>
@@ -56,11 +67,27 @@ export default function Library() {
 
         {/* Right Panel */}
         <div className="lg:col-span-2 rounded-3xl border border-gray-100 bg-white p-8 shadow-sm overflow-y-auto">
-          <p
-            className={`${interTight.className} text-center text-gray-400`}
-          >
-            Select a note to view.
-          </p>
+          {selectedNote ? (
+  <>
+    <h2
+      className={`${interTight.className} text-2xl font-bold text-blue-900`}
+    >
+      {selectedNote.title}
+    </h2>
+
+    <div
+      className={`${interTight.className} mt-6 whitespace-pre-wrap text-gray-700`}
+    >
+      {selectedNote.content}
+    </div>
+  </>
+) : (
+  <p
+    className={`${interTight.className} text-center text-gray-400`}
+  >
+    Select a note to view.
+  </p>
+)}
         </div>
 
       </div>
