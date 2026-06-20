@@ -17,7 +17,7 @@ export default function DashboardPage() {
         <ActionCard title="Ask AI" description="Beginner-friendly explanations, step-by-step breakdowns, and academic support - whenever a concept feels cloudy." link="/dashboard/ask-ai" icon={<Sparkles />} />
         <ActionCard title="Smart Notes Generator" description="Turn any topic into structured study notes - summaries and essays
 formulas, worked examples, and revision points." link="/dashboard/notes-generator" icon={<NotebookPen />} />
-        <ActionCard title="Library" description="Every note you've made, saved and searchable in one calm place." link="/action" icon={<Library />} />
+        <ActionCard title="Library" description="Every note you've made, saved and searchable in one calm place." link="/dashboard/library" icon={<Library />} />
       </div>
       </div>
   );

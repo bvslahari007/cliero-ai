@@ -53,7 +53,6 @@ export default function Footer(){
             <Link href="/note" className="hover:text-blue-200 transition-colors duration-300">
               Note for You!
             </Link>
-
           </div>
 
         </div>
