@@ -146,7 +146,19 @@ export default function AskAI() {
                 >
                   <div className="mt-1 text-gray-700">
 
-<MarkdownRenderer content={message.content} />
+<div
+  className={
+    message.role === "user"
+      ? "text-sm md:text-base text-white"
+      : "mt-1 text-gray-700"
+  }
+>
+  {message.role === "user" ? (
+    message.content
+  ) : (
+    <MarkdownRenderer content={message.content} />
+  )}
+</div>
 </div>
                 </div>
               </div>

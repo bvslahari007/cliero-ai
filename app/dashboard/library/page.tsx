@@ -122,11 +122,6 @@ async function handleDelete(id: string) {
         <div className="lg:col-span-2 rounded-3xl border border-gray-100 bg-white p-8 shadow-sm overflow-y-auto">
           {selectedNote ? (
   <>
-    <h2
-      className={`${interTight.className} text-2xl font-bold text-blue-900`}
-    >
-      {selectedNote.title}
-    </h2>
 
     <div className={`${interTight.className} mt-6 text-gray-700`}>
   <MarkdownRenderer content={selectedNote.content} />

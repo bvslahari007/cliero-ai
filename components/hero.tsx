@@ -59,7 +59,7 @@ export default function Hero() {
       <h1
         className={`${instrumentSerif.className} text-5xl md:text-6xl text-blue-800 leading-none font-normal`}
       >
-        Coming Soon!
+        Clear Your Cloudy Mind!
       </h1>
       
       <Link
