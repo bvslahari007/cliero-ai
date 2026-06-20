@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import {
+  Trash2
+} from "lucide-react";
 
 export default function Library() {
     const [notes, setNotes] = useState<any[]>([]);
@@ -27,6 +30,31 @@ export default function Library() {
   }
 
   setNotes(data || []);
+}
+
+async function handleDelete(id: string) {
+  const confirmDelete = confirm(
+    "Are you sure you want to delete this note?"
+  );
+
+  if (!confirmDelete) return;
+
+  const { error } = await supabase
+    .from("notes")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    console.error(error);
+    alert("Failed to delete note.");
+    return;
+  }
+
+  if (selectedNote?.id === id) {
+    setSelectedNote(null);
+  }
+
+  fetchNotes();
 }
 
     useEffect(() => {
@@ -58,12 +86,35 @@ export default function Library() {
     p-3
     transition-all
     hover:bg-blue-800
+    flex
+    items-center
+    justify-between
   "
 >
-    <p className={`${interTight.className} font-semibold text-white`}>
-      {note.title}
-    </p>
-  </div>
+  <p
+    className={`${interTight.className} font-semibold text-white`}
+  >
+    {note.title}
+  </p>
+
+  <button
+  onClick={(e) => {
+    e.stopPropagation();
+    handleDelete(note.id);
+  }}
+  className="
+    rounded-lg
+    p-1.5
+    text-white/70
+    hover:bg-red-500/20
+    hover:text-red-300
+    transition-all
+    duration-200
+  "
+>
+  <Trash2 size={16} />
+</button>
+</div>
 ))}
         </div>
 
