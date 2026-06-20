@@ -15,10 +15,18 @@ export default function DashboardPage() {
       <TipOfTheDay />
       <div className="grid gap-4 p-5 md:grid-cols-3">
         <ActionCard title="Ask AI" description="Beginner-friendly explanations, step-by-step breakdowns, and academic support - whenever a concept feels cloudy." link="/dashboard/ask-ai" icon={<Sparkles />} />
-        <ActionCard title="Smart Notes Generator" description="Turn any topic into structured study notes - summaries and essays
-formulas, worked examples, and revision points." link="/dashboard/notes-generator" icon={<NotebookPen />} />
-        <ActionCard title="Library" description="Every note you've made, saved and searchable in one calm place." link="/dashboard/library" icon={<Library />} />
-      </div>
+        <ActionCard
+  title="Smart Notes Generator"
+  description="Transform any topic into comprehensive study notes, thoughtfully curated to cover every aspect a student needs for learning, understanding, and revision."
+  link="/dashboard/notes-generator"
+  icon={<NotebookPen />}
+/>
+<ActionCard
+  title="Library"
+  description="Every concept you've explored and every note you've saved, organized in one calm place for focused learning and revision."
+  link="/dashboard/library"
+  icon={<Library />}
+/>      </div>
       </div>
   );
 }
