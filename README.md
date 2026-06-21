@@ -137,7 +137,6 @@ Building Cliero AI helped me gain hands-on experience with:
 ---
 
 ## Screenshots
-![alt text](image.png)_Add screenshots of the landing page, dashboard, Ask AI, Notes Generator, and Library here._
 
 ---
 
