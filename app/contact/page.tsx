@@ -35,10 +35,7 @@ export default function Contact() {
 
         {/* Header */}
         <div className="text-center mt-6">
-
-          <h1
-            className={`${instrumentSerif.className} text-5xl md:text-7xl`}
-          >
+          <h1 className={`${instrumentSerif.className} text-5xl md:text-7xl`}>
             Contact Me
           </h1>
 
@@ -73,19 +70,21 @@ export default function Contact() {
             Email Me
           </h2>
 
-          <p className={`${instrumentSerif.className} text-xl md:text-2xl mb-6`}>
+          <p
+            className={`${instrumentSerif.className} text-xl md:text-2xl mb-6`}
+          >
             Questions, collaborations, ideas, or support.
           </p>
 
           <a
-            href="mailto:contact.clieroai@gmail.com"
+            href="mailto:bvslahari@gmail.com"
             className={`${instrumentSerif.className} text-xl md:text-2xl mb-6
               text-xl
               font-semibold
               hover:text-blue-700
               transition-colors`}
           >
-            contact.clieroai@gmail.com
+            bvslahari@gmail.com
           </a>
         </div>
 
@@ -111,7 +110,9 @@ export default function Contact() {
             Share Feedback
           </h2>
 
-          <p className={`${instrumentSerif.className} text-xl md:text-2xl mb-6`}>
+          <p
+            className={`${instrumentSerif.className} text-xl md:text-2xl mb-6`}
+          >
             Help improve ClieroAI by sharing your thoughts and suggestions.
           </p>
 
@@ -134,15 +135,11 @@ export default function Contact() {
             Open Feedback Form →
           </Link>
         </div>
-        
 
         {/* Socials */}
 
         <div className="flex gap-8 mt-4">
-          <Link
-            href="https://www.linkedin.com/"
-            target="_blank"
-          >
+          <Link href="https://www.linkedin.com/" target="_blank">
             <Image
               src="/LinkedIn_icon.svg.png"
               alt="LinkedIn"
@@ -157,10 +154,7 @@ export default function Contact() {
             />
           </Link>
 
-          <Link
-            href="https://github.com/"
-            target="_blank"
-          >
+          <Link href="https://github.com/" target="_blank">
             <Image
               src="/Githu_icon.png"
               alt="GitHub"
